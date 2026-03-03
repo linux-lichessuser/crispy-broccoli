@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Activity Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        #result {
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Random Activity Generator</h1>
+    <p>Here are three things you can do right now:</p>
+    <p id="result">Click the button to generate activities.</p>
+    <button onclick="generateTasks()">Generate New Activities</button>
+
+    <script>
+        const tasks = [
+            "Play a board game",
+            "Check your schedule",
+            "Count your blessings",
+            "Ask ChatGPT about Windows Disk Cleanup",
+            "Take an online quiz",
+            "Do 10 push-ups",
+            "Start a 30-day challenge based on your hobbies",
+            "Check your messages",
+            "Message a contact you haven't spoken to in a while",
+            "Clean up your room",
+            "Read The Lord of the Rings (it's quite unique from the movies)",
+            "Write a journal entry or short story",
+            "Draw your surroundings",
+            "Touch grass",
+            "Solve this riddle: I speak with no mouth, I hear with no ears, I answer without thinking. What am I?"
+        ];
+
+        function getRandomItems(array, count) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, count);
+        }
+
+        function generateTasks() {
+            const randomItems = getRandomItems(tasks, 3);
+            document.getElementById("result").textContent = randomItems.join(" • ");
+        }
+
+        // Generate tasks on first load
+        generateTasks();
+    </script>
+
+</body>
+</html>
